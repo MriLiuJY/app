@@ -1,0 +1,64 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+html{
+	font-size: 20px;
+}
+body{
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+}
+.cation-top{
+	position: fixed;
+	width: 100%;
+	height: 30%;
+	top:0;
+}
+.cation-mid{
+	position: fixed;
+	width: 100%;
+	height: 40%;
+	top:30%;
+}
+.cation-und{
+	position: fixed;
+	width: 100%;
+	height: 30%;
+	top:70%;
+}
+.nav{
+	position: fixed;
+	width: 100%;
+	height: 10%;
+	background: #222;
+	top:0;
+	opacity: 0.9;  
+}
+.nav a{
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font-size: 20px;
+	margin:20px 0  0 55px;
+}
+.m-footer{
+	position: fixed;
+	background: #222;
+	width: 100%;
+	height: 30%;
+	top: 70%;
+	opacity: 0.9;
+}
+.m-footer ul {
+	padding: 0;
+	magin:0;
+}
+.m-footer ul li{
+	list-style: none;
+	color:#fff;
+	float: left;
+	width: 33%;
+	text-align: center;
+}
