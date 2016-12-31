@@ -36,6 +36,7 @@ body{
 	width: 100%;
 	height: 40%;
 	top:30%;
+	z-index: 99;
 }
 .cation-und{
 	position: fixed;
@@ -116,6 +117,7 @@ body{
 .m-footer-pannel{
 	position: absolute;
 	width: 100%;
+	height: 6.6rem;
 	color: #fff;
 	background-color: #222;
 	z-index: 1000;
@@ -127,6 +129,7 @@ body{
 .footer-mod span{
 	display: inline-block;
 	font-size: 18px;
+	margin-top: 8px;
 }
 .font-size{
 	background-color: #222;
@@ -189,6 +192,7 @@ body{
 	width: 33%;
 	text-align: center;
 	padding: 1.5rem 0 0 0;
+	z-index: 999;
 }
 .footer-nav-img{
 	position: absolute;
@@ -204,7 +208,7 @@ body{
 .footer-size-img{
 	position: absolute;
 	width: 1.3rem;
-	height: 0.85rem;
+	height: 0.9rem;
     left: 49.5%;
 	top: 25%;
 	margin-top: -0.45rem;
