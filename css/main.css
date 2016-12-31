@@ -106,7 +106,6 @@ body{
 	height: 25%;
 	top: 75%;
 	opacity: 0.9;
-	background: #222;
 }
 .m-footer-bk{
 	position: absolute;
@@ -118,7 +117,7 @@ body{
 	position: absolute;
 	width: 100%;
 	color: #fff;
-	background-color: none;
+	background-color: #222;
 	z-index: 1000;
 }
 .footer-mod{
@@ -147,6 +146,26 @@ body{
 	background: #fff;
 	display: inline-block;
 }
+.bk-container2{
+	position: absolute;
+	left: 30%;
+	top: 60%;
+	width: 31px;
+	height: 31px;
+	border-radius: 15px;
+	background: #666;
+	display: inline-block;
+}
+.bk-container3{
+	position: absolute;
+	left: 40%;
+	top: 60%;
+	width: 31px;
+	height: 31px;
+	border-radius: 15px;
+	background: #ddd;
+	display: inline-block;
+}
 .bk-container-current{
 	position: absolute;
 	left: 0;
@@ -158,10 +177,11 @@ body{
 	display: inline-block;
 }
 .m-footer-und{
-	position: relative;
+	position: fixed;
 	background: #222;
+	height: 60px;
 	width: 100%;
-	margin-top: 6rem;
+	margin-top: 6.5rem;
 }
 .footer-und-button{
 	float: left;
