@@ -19,7 +19,13 @@
 		night : $('#night'),
 		footer_und_button : $('.footer-und-button'),
 		m_footer_pannel : $('.m-footer-pannel'),
+		footer_night : $('.footer-night'),
+		bk_container : $('bk-container-current'),
 	}
+	var Win = $(window);
+	var Doc = $(document);
+	var RootContainer = $('.m-body');
+	var initFontSize = 20;
 
 	function main(){
 		EventHanlder();
@@ -49,8 +55,41 @@
 				Dom.m_footer_pannel.hide();
 			}
 		});
+		$('.footer-night').click(function(){
+			if (Dom.footer_night) {}
+		});
+
 		$('#night').click(function(){
 			//触发 切换背景
+		});
+		$('#font-big').click(function(){
+			initFontSize += 1;
+			RootContainer.css('font-size',initFontSize);
+		});
+		$('#font-small').click(function(){
+			initFontSize -= 1;
+			RootContainer.css('font-size',initFontSize);
+		});
+		$('#bk-container-1').click(function(){
+			RootContainer.addClass('color-1');
+			RootContainer.removeClass('color-2')
+			RootContainer.removeClass('color-3')
+		});
+		$('#bk-container-2').click(function(){
+			RootContainer.addClass('color-2');
+			RootContainer.removeClass('color-1')
+			RootContainer.removeClass('color-3')
+		});
+		$('#bk-container-3').click(function(){
+			RootContainer.addClass('color-3');
+			RootContainer.removeClass('color-1')
+			RootContainer.removeClass('color-2')
+		});
+
+		Win.scroll(function(){
+			Dom.m_nav.hide();
+			Dom.m_footer_und.hide();
+			Dom.m_footer_pannel.hide();
 		});
 	}
 
