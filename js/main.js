@@ -7,7 +7,20 @@
 		var StorageSetter = function(key,val){
 			return localStorage.setItem(prefix + key,val);
 		}
+		var getBSONP = function(url,callback){
+			return $.jsonp({
+				url : url,
+				cache:true,
+				callback:'duokan_fiction_chapter',
+				success : function(result){
+					var data = $.base64.decode(result);
+					var json = decodeURIComponent(escape(data));
+					callback(data);
+				}
+			})
+		}
 		return{
+			getBSONP : getBSONP,
 			StorageGetter:StorageGetter,
 			StorageSetter:StorageSetter
 		}
@@ -28,10 +41,39 @@
 	var initFontSize = 20;
 
 	function main(){
+		var readerModel = ReaderModel();
+		readerModel.init();
 		EventHanlder();
 	}
 	function ReaderModel(){
 		//数据交互
+		var Chapter_id;
+		var init = function(){
+			getFictionInfo(function(){
+				getCurChapterContent(Chapter_id,function(){
+					// 渲染
+				});
+			})
+		}
+		var getFictionInfo =function(callback){
+			$.get('data/chapter.json',function(data){
+				Chapter_id = data.chapters[1].chapter_id;
+				callback && callback();
+			},'json')
+		}
+		var getCurChapterContent = function(chapter_id,data){
+			$.get('data/data' + chapter_id + '.json',function(data){
+				if (data.result == 0) {
+					var url = data.jsonp;
+					Util.getBSONP(url , function(data){
+						callback && callback(data);
+					});
+				}
+			},'json')
+		}
+		return{
+			init : init
+		}	
 	}
 	function ReaderBaseFrame(){
 		//渲染ui
