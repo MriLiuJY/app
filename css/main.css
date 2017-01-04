@@ -75,6 +75,9 @@ body{
 	font-size: 20px;
 	margin:20px 0  0 47px;
 }
+.m-page{
+	z-index: 9999999;
+}
 .m-page ul{
 	padding: 0;
 	margin: 0;
@@ -137,6 +140,7 @@ body{
 .footer-mod{
 	padding: 5px 10px;
 	margin: 15px;
+	z-index: 999;
 }
 .footer-mod span{
 	display: inline-block;

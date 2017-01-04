@@ -37,12 +37,14 @@
 	}
 	var Win = $(window);
 	var Doc = $(document);
+	var readerModel;
+	var readerUI;
 	var RootContainer = $('.m-body');
 	var initFontSize = 20;
 
 	function main(){
-		var readerModel = ReaderModel();
-		var readerUI = ReaderBaseFrame(RootContainer);
+		readerModel = ReaderModel();
+		readerUI = ReaderBaseFrame(RootContainer);
 
 		readerModel.init(function(data){
 			readerUI(data);
@@ -52,6 +54,7 @@
 	function ReaderModel(){
 		//数据交互
 		var Chapter_id;
+		var ChapterTotal;
 		var init = function(UIcallback){
 			getFictionInfo(function(){
 				getCurChapterContent(Chapter_id,function(data){
@@ -63,6 +66,7 @@
 		var getFictionInfo =function(callback){
 			$.get('data/chapter.json',function(data){
 				Chapter_id = data.chapters[1].chapter_id;
+				ChapterTotal =data.chapters.length;
 				callback && callback();
 			},'json')
 		}
@@ -76,8 +80,26 @@
 				}
 			},'json')
 		}
+		var prevChapter =function(UIcallback){
+			Chapter_id = parseInt(Chapter_id,10);
+			if (Chapter_id ==0) {
+				return;
+			}
+			Chapter_id -= 1;
+			getCurChapterContent(Chapter_id,UIcallback);
+		}
+		var nextChapter =function(UIcallback){
+			Chapter_id = parseInt(Chapter_id,10);
+			if (Chapter_id ==ChapterTotal) {
+				return;
+			}
+			Chapter_id += 1;
+			getCurChapterContent(Chapter_id,UIcallback);
+		}
 		return{
-			init : init
+			init : init,
+			prevChapter : prevChapter,
+			nextChapter : nextChapter,
 		}	
 	}
 	function ReaderBaseFrame(container){
@@ -148,6 +170,17 @@
 			Dom.m_nav.hide();
 			Dom.m_footer_und.hide();
 			Dom.m_footer_pannel.hide();
+		});
+
+		$('#prev_button').click(function(){
+			readerModel.prevChapter(function(data){
+				readerUI(data);
+			});
+		});
+		$('#next_button').click(function(){
+			readerModel.nextChapter(function(data){
+				readerUI(data);
+			});
 		});
 	}
 
