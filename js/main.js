@@ -15,7 +15,7 @@
 				success : function(result){
 					var data = $.base64.decode(result);
 					var json = decodeURIComponent(escape(data));
-					callback(data);
+					callback(json);
 				}
 			})
 		}
@@ -42,16 +42,21 @@
 
 	function main(){
 		var readerModel = ReaderModel();
-		readerModel.init();
+		var readerUI = ReaderBaseFrame(RootContainer);
+
+		readerModel.init(function(data){
+			readerUI(data);
+		});
 		EventHanlder();
 	}
 	function ReaderModel(){
 		//数据交互
 		var Chapter_id;
-		var init = function(){
+		var init = function(UIcallback){
 			getFictionInfo(function(){
-				getCurChapterContent(Chapter_id,function(){
+				getCurChapterContent(Chapter_id,function(data){
 					// 渲染
+					UIcallback && UIcallback(data);
 				});
 			})
 		}
@@ -61,7 +66,7 @@
 				callback && callback();
 			},'json')
 		}
-		var getCurChapterContent = function(chapter_id,data){
+		var getCurChapterContent = function(chapter_id,callback){
 			$.get('data/data' + chapter_id + '.json',function(data){
 				if (data.result == 0) {
 					var url = data.jsonp;
@@ -75,8 +80,19 @@
 			init : init
 		}	
 	}
-	function ReaderBaseFrame(){
+	function ReaderBaseFrame(container){
 		//渲染ui
+		function parseChapterData(jsonData){
+			var jsonObj = JSON.parse(jsonData);
+			var html = '<h4>' + jsonObj.t + '</h4>';
+			for(var i = 0;i<jsonObj.p.length;i++){
+				html += '<p>' + jsonObj.p[i] + '</p>';
+			}
+			return html;
+		}
+		return function(data){
+			container.html(parseChapterData(data));
+		}
 	}
 	function EventHanlder(){
 		//交互
