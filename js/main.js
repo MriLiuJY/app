@@ -20,7 +20,7 @@
 			})
 		}
 		return{
-			getBSONP : getBSONP,
+			getBSONP:getBSONP,
 			StorageGetter:StorageGetter,
 			StorageSetter:StorageSetter
 		}
