@@ -119,7 +119,6 @@ body{
 .m-footer{
 	position: fixed;
 	width: 100%;
-	height: 25%;
 	top: 75%;
 	opacity: 0.9;
 }

@@ -66,7 +66,10 @@
 		}
 		var getFictionInfo =function(callback){
 			$.get('data/chapter.json',function(data){
-				Chapter_id = data.chapters[1].chapter_id;
+				Chapter_id = Util.StorageGetter('last_chapter_id');
+				if (Chapter_id == null) {
+					Chapter_id = data.chapters[1].chapter_id;
+				}
 				ChapterTotal =data.chapters.length;
 				callback && callback();
 			},'json')
@@ -88,6 +91,7 @@
 			}
 			Chapter_id -= 1;
 			getCurChapterContent(Chapter_id,UIcallback);
+			Util.StorageSetter('last_chapter_id',Chapter_id);
 		}
 		var nextChapter =function(UIcallback){
 			Chapter_id = parseInt(Chapter_id,10);
@@ -96,6 +100,7 @@
 			}
 			Chapter_id += 1;
 			getCurChapterContent(Chapter_id,UIcallback);
+			Util.StorageSetter('last_chapter_id',Chapter_id);
 		}
 		return{
 			init : init,
