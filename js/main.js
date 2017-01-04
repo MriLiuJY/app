@@ -34,6 +34,7 @@
 		m_footer_pannel : $('.m-footer-pannel'),
 		footer_night : $('.footer-night'),
 		bk_container : $('bk-container-current'),
+		m_footer : $('m-footer'),
 	}
 	var Win = $(window);
 	var Doc = $(document);
@@ -122,10 +123,12 @@
 			if(Dom.m_nav.css('display') == 'none') {
 				Dom.m_nav.show();
 				Dom.m_footer_und.show();
+				Dom.m_footer.show();
 			}else{
 				Dom.m_nav.hide();
 				Dom.m_footer_und.hide();
 				Dom.m_footer_pannel.hide();
+				Dom.m_footer.hide();
 			}
 		});
 		$('.footer-und-button').click(function(){
